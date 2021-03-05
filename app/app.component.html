@@ -1,0 +1,47 @@
+<mat-form-field>
+    <div class="myfilebrowser">
+      <mat-toolbar>
+        <input matInput [(ngModel)]="myfilename" readonly name="memberContactNo" />
+        <button mat-flat-button color="primary"> Browse </button>
+      </mat-toolbar>
+      <input type="file" #UploadFileInput id="fileUpload" (change)="selectFile($event)" name="fileUpload" multiple="multiple"/>
+    </div>
+</mat-form-field>
+
+<button class="myButton"  [disabled]="!selectedFiles" (click)="upload()">Upload</button>
+
+<mat-list>
+  <div mat-subheader>SPLOGGING FILES:</div>
+  <mat-list-item *ngFor="let recording of loadingRecordings; index as i;">
+    
+    <div mat-line>
+      <mat-icon aria-hidden="false">note</mat-icon>
+      {{recording.externalTrackId}} : {{recording.status}}
+    </div>
+    
+    <div mat-line>
+      <div *ngIf="recording.status !== 'splogged'">
+        <mat-progress-spinner
+          class="example-margin"
+          color="primary"
+           diameter="50"
+          [mode]="mode"
+        >
+        </mat-progress-spinner>
+      </div>
+    </div>
+
+  </mat-list-item>
+</mat-list>
+
+<div *ngIf="s3Loading">
+  <mat-progress-spinner
+        class="example-margin"
+        color="warn"
+        [mode]="mode"
+        diameter="50"
+    >
+    </mat-progress-spinner>
+</div>
+
+
