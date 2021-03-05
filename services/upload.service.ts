@@ -20,8 +20,8 @@ export class UploadService {
       Body        : file,
       ContentType : file.type,
       ACL         : 'public-read',
-      Key         : `tmpTesting/${file.name}`,
-      Bucket      : 'superhifi-content-media-staging'
+      Key         : `tmpTest/${file.name}`,
+      Bucket      : 'shf-imgix-dev'
     };
     
     return new Promise((resolve, reject) => {
